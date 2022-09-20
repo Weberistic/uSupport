@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="src/uSupport/App_Plugins/uSupport/assets/usupport.svg" width="250">
+    <img src="usupport.svg" width="250">
 </p>
 
 ![version](https://img.shields.io/nuget/v/uSupport?label=version)
