@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="usupport.svg" width="250">
+    <img src="assets/usupport.svg" width="250">
 </p>
 
 ![version](https://img.shields.io/nuget/v/uSupport?label=version)
@@ -34,3 +34,11 @@ With uSupport hub you can now connect your clients sites to a hub. The hub allow
 1. In the hub. Create a new node and add the URL of the node you want to add.
 1. You will now recive an id for the node. On your node installation add the id & the url of the hub.
 1. Enoy managing all tickets on 1 website.
+
+## Screenshots
+![Dashboard](assets/dashboard.PNG "Dashboard")
+![Ticket details](assets/ticketDetails.PNG "Ticket details")
+![Edit ticket](assets/editTicket.PNG "Edit ticket")
+![Ticket types](assets/ticketTypes.PNG "Ticket types")
+![Ticket statuses](assets/ticketStatus.PNG "Ticket statuses")
+![Settings](assets/settings.PNG "Settings")
