@@ -3,7 +3,7 @@
 </p>
 
 ![version](https://img.shields.io/nuget/v/uSupport?label=version)
-[![Nuget](https://img.shields.io/nuget/dt/uSupport?color=%2346c018&logo=Nuget)](https://www.nuget.org/packages/uSupport/)
+[![Nuget](https://img.shields.io/nuget/dt/uSupport?color=2346c018&logo=Nuget)](https://www.nuget.org/packages/uSupport/)
 [![Umbraco](https://img.shields.io/badge/our-umbraco-%233544b1)](https://our.umbraco.com/packages/backoffice-extensions/usupport/)
 
 ## What is uSupport
