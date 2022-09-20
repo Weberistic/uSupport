@@ -28,13 +28,6 @@ In order to view uSupports admin section. You will need to assign uSupport secti
 ### uSupport hub
 With uSupport hub you can now connect your clients sites to a hub. The hub allows you manage all connected sites tickets. You can manage ticket, ticket types/statuses. All via the hub.
 
-#### Getting started with uSupport hub.
-1. Install uSupportHub on the Umbraco site you want to act as a hub.
-1. Install uSupportNode on the Umbraco sites that you want to connect to the hub.
-1. In the hub. Create a new node and add the URL of the node you want to add.
-1. You will now recive an id for the node. On your node installation add the id & the url of the hub.
-1. Enoy managing all tickets on 1 website.
-
 ## Screenshots
 ![Dashboard](assets/dashboard.PNG "Dashboard")
 ![Ticket details](assets/ticketDetails.PNG "Ticket details")
