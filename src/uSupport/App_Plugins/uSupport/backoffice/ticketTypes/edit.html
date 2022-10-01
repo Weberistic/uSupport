@@ -1,0 +1,56 @@
+﻿<div ng-controller="uSupport.ticketType.edit.controller as vm" class="uSupport">
+
+	<umb-load-indicator ng-if="vm.loading"></umb-load-indicator>
+
+	<form novalidate val-form-manager name="formName" ng-submit="vm.save()">
+		<umb-editor-view  ng-if="!vm.loading">
+			<umb-editor-header name="vm.page.title"
+							   description="vm.page.description"
+							   hideDescription="false"
+							   name-locked="false"
+							   hide-alias="false"
+							   alias="vm.page.alias"
+							   icon="vm.page.icon"
+							   hideIcon="false"
+							   show-back-button="true"
+							   on-back="vm.close()"
+							   menu="vm.page.menu">
+			</umb-editor-header>
+
+			<umb-editor-container class="form-horizontal">
+				<div class="uSupport-row">
+					<div class="uSupport-col-12">
+						<umb-box>
+							<umb-box-header title="Settings"></umb-box-header>
+							<umb-box-content>
+
+								<umb-property property="property" ng-repeat="property in  vm.properties">
+									<umb-property-editor model="property"></umb-property-editor>
+								</umb-property>
+
+							</umb-box-content>
+						</umb-box>
+					</div>
+				</div>
+			</umb-editor-container>
+
+			<umb-editor-footer>
+				<umb-editor-footer-content-right>
+					<umb-button type="button"
+								button-style="link"
+								label-key="general_close"
+								action="vm.close()">
+					</umb-button>
+
+					<umb-button type="submit"
+								button-style="success"
+								state="vm.buttonState"
+								label-key="buttons_save"
+								action="vm.save()">
+					</umb-button>
+				</umb-editor-footer-content-right>
+			</umb-editor-footer>
+
+		</umb-editor-view>
+	</form>
+</div>

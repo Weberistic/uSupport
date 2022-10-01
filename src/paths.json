@@ -1,0 +1,13 @@
+{
+    "folderNames": [
+        "uSupport"
+    ],
+    "sources": [
+        "USupport/App_Plugins/uSupport"
+    ],
+    "sites": [
+        "USupport.v8.Web/App_Plugins/",
+        "USupport.v9.Web/App_Plugins/",
+        "USupport.v10.Web/App_Plugins/"
+    ]
+}

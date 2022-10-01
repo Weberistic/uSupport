@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net472;net50;net60</TargetFrameworks>
+  </PropertyGroup>
+	
+	<ItemGroup Condition="'$(TargetFramework)' == 'net472'">
+		<PackageReference Include="UmbracoCms.Web" Version="8.10.1" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net50'">
+		<PackageReference Include="Umbraco.Cms.Web.Website" Version="9.4.0" />
+		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.4.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net60'">
+		<PackageReference Include="Umbraco.Cms.Web.Website" Version="10.0.0" />
+		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="10.0.0" />
+	</ItemGroup>
+
+	<!-- nuget package stuff -->
+	<PropertyGroup>
+		<PackageId>uSupport</PackageId>
+		<Version>1.0.0</Version>
+		<Title>uSupport</Title>
+		<Authors>Lantzify</Authors>
+		<Owners>Lantzify</Owners>
+		<PackageIcon>usupport.png</PackageIcon>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/Weberistic/uSupport</PackageProjectUrl>
+		<PackageTags>Umbraco</PackageTags>
+		<RepositoryUrl>https://github.com/Weberistic/uSupport</RepositoryUrl>
+		<Description>A ticketing package for Umbraco</Description>
+		<Summary>A ticketing package for Umbraco</Summary>
+		<Tags>umbraco support</Tags>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+		<ContentTargetFolders>content</ContentTargetFolders>
+
+		<PackageOutputPath>C:/LocalNuGets</PackageOutputPath>
+	</PropertyGroup>
+
+	<!-- package files -->
+	<ItemGroup>
+		<Content Include="App_Plugins\**\*.*">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+
+		<!-- target file to copy app_plugins in .netcore -->
+		<None Include="build\**\*.*">
+			<Pack>True</Pack>
+			<PackagePath>buildTransitive</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\assets\usupport.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+</Project>

@@ -19,9 +19,16 @@ Instead of managing your clients Umbraco issues via email. Why not keep them in 
 * Email notifications
 * Ticketing dashboard
 
-#### Getting started with uSupport
+## Getting started with uSupport
 In order to view uSupports admin section. You will need to assign uSupport section to the desired user group. [You can read more here.](https://our.umbraco.com/Documentation/Fundamentals/Data/Users/#user-group-parameters) 
 
+## Contributing
+
+If you would like to help me improve this package, feel free to create a pull request!
+
+## Issues
+
+If you find any issues with the package feel free to raise a issue!
 
 ## Exentions
 

@@ -1,0 +1,73 @@
+﻿<div ng-controller="uSupport.ticketStatus.edit.controller as vm" class="uSupport">
+
+	<umb-load-indicator ng-if="vm.loading"></umb-load-indicator>
+
+	<form novalidate val-form-manager name="formName" ng-submit="vm.save()">
+		<umb-editor-view ng-if="!vm.loading">
+			<umb-editor-header name="vm.page.title"
+							   hide-description="true"
+							   name-locked="false"
+							   hide-alias="false"
+							   alias="vm.page.alias"
+							   icon="vm.page.icon"
+							   hide-icon="false"
+							   show-back-button="true"
+							   on-back="vm.close()"
+							   menu="vm.page.menu">
+			</umb-editor-header>
+
+			<umb-editor-container class="form-horizontal">
+				<div class="uSupport-row">
+					<div class="uSupport-col-12">
+						<umb-box>
+							<umb-box-header title="Settings"></umb-box-header>
+							<umb-box-content>
+
+								<umb-property property="property" ng-repeat="property in vm.properties">
+									<umb-property-editor model="property"></umb-property-editor>
+								</umb-property>
+
+								<div class="umb-property uSupport-umb-property-last">
+									<div class="control-group umb-control-group">
+										<div class="control-header">
+											<div class="control-label">
+												Preview
+											</div>
+										</div>
+										<div class="controls">
+											<div class="db umb-property-editor">
+												<umb-badge size="s"
+														   color="{{vm.selectedColor}}">
+													{{vm.selectedName || 'Status'}}
+												</umb-badge>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</umb-box-content>
+						</umb-box>
+					</div>
+				</div>
+			</umb-editor-container>
+
+			<umb-editor-footer>
+				<umb-editor-footer-content-right>
+					<umb-button type="button"
+								button-style="link"
+								label-key="general_close"
+								action="vm.close()">
+					</umb-button>
+
+					<umb-button type="submit"
+								button-style="success"
+								state="vm.buttonState"
+								label-key="buttons_save"
+								action="vm.save()">
+					</umb-button>
+				</umb-editor-footer-content-right>
+			</umb-editor-footer>
+
+		</umb-editor-view>
+	</form>
+</div>
