@@ -25,14 +25,14 @@
 		<Title>uSupport</Title>
 		<Authors>Lantzify</Authors>
 		<Owners>Lantzify</Owners>
+                <Company>Weberistic</Company>
 		<PackageIcon>usupport.png</PackageIcon>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/Weberistic/uSupport</PackageProjectUrl>
-		<PackageTags>Umbraco</PackageTags>
+		<PackageTags>umbraco umbraco-marketplace uSupport support</PackageTags>
 		<RepositoryUrl>https://github.com/Weberistic/uSupport</RepositoryUrl>
 		<Description>A ticketing package for Umbraco</Description>
 		<Summary>A ticketing package for Umbraco</Summary>
-		<Tags>umbraco support</Tags>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
