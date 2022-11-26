@@ -1,6 +1,9 @@
 ﻿<div ng-controller="uSupport.tickets.edit.controller as vm" class="uSupport" id="openTicket">
+
+	<umb-load-indicator ng-if="vm.loading"></umb-load-indicator>
+
 	<form novalidate val-form-manager name="formName" ng-model="vm.ticket" ng-submit="vm.save(formName)">
-		<umb-editor-view>
+		<umb-editor-view ng-if="!vm.loading">
 			<umb-editor-header name="vm.page.title"
 							   description="vm.page.description"
 							   menu="vm.page.menu"
@@ -10,130 +13,14 @@
 							   hide-alias="true"
 							   show-back-button="true"
 							   on-back="vm.close()"
+							   navigation="vm.page.navigation"
 							   hide-icon="true">
 			</umb-editor-header>
 
-			<umb-editor-container>
+				<umb-editor-container>
+					<umb-editor-sub-views sub-views="vm.page.navigation" model="vm"></umb-editor-sub-views>
+				</umb-editor-container>
 
-				<umb-load-indicator ng-if="vm.loading"></umb-load-indicator>
-
-				<div class="flex" ng-if="!vm.loading">
-					<div class="umb-package-details__main-content">
-						<umb-box class="form-horizontal">
-							<umb-box-header title="Ticket"></umb-box-header>
-							<umb-box-content>
-
-								<umb-property property="property" ng-repeat="property in  vm.properties">
-									<umb-property-editor model="property"></umb-property-editor>
-								</umb-property>
-
-								<div class="control-group umb-control-group comments-label">
-									<div class="control-header">
-										<div class="control-label">
-											Comments
-										</div>
-									</div>
-								</div>
-
-								<uSupport-comments comments="vm.ticket.Comments" ticket-id="vm.ticket.Id" user-id="vm.user.id"></uSupport-comments>
-
-							</umb-box-content>
-						</umb-box>
-					</div>
-
-					<div class="umb-package-details__sidebar">
-						<umb-box>
-							<umb-box-header title="Details"></umb-box-header>
-							<umb-box-content>
-								<div class="umb-property">
-									<div class="control-group umb-control-group no-border mb3">
-										<label class="control-label">
-											<span>Type</span>
-										</label>
-										<div class="controls">
-											<div class="flex align-items-center">
-												<umb-icon title="{{vm.ticket.Type.Name}}" icon="{{vm.ticket.Type.Icon}}" class="{{vm.ticket.Type.Color}} umb-node-preview__icon"></umb-icon>
-
-												<div class="umb-node-preview__content">
-													<div class="umb-node-preview__name">
-														{{vm.ticket.Type.Name}}
-													</div>
-													<div class="umb-node-preview__description">
-														{{vm.ticket.Type.Description}}
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="umb-property">
-									<div class="control-group umb-control-group no-border mb3">
-										<label class="control-label">
-											<span>Status</span>
-										</label>
-										<div class="controls">
-											<umb-badge size="s"
-													   color="{{vm.ticket.Status.Color}}">
-												{{vm.ticket.Status.Name}}
-											</umb-badge>
-										</div>
-									</div>
-								</div>
-								<div class="umb-property">
-									<div class="control-group umb-control-group no-border mb3">
-										<label class="control-label">
-											<span>Author</span>
-										</label>
-										<div class="controls">
-											{{ vm.ticket.Author.name }}
-										</div>
-									</div>
-								</div>
-								<div class="umb-property">
-									<div class="control-group umb-control-group no-border mb3">
-										<label class="control-label">
-											<span>Submitted</span>
-										</label>
-										<div class="controls">
-											{{ vm.ticket.Submitted | date:'yyyy-MM-dd'}}
-										</div>
-									</div>
-								</div>
-								<div class="umb-property" ng-if="vm.ticket.LastUpdatedBy">
-									<div class="control-group umb-control-group no-border mb3">
-										<label class="control-label">
-											<span>Last updated by</span>
-										</label>
-										<div class="controls">
-											{{ vm.ticket.LastUpdatedBy }}
-										</div>
-									</div>
-								</div>
-								<div class="umb-property" ng-if="vm.ticket.Resolved">
-									<div class="control-group umb-control-group no-border mb3">
-										<label class="control-label">
-											<span>Resolved</span>
-										</label>
-										<div class="controls">
-											{{ vm.ticket.Resolved | date:'yyyy-MM-dd'}}
-										</div>
-									</div>
-								</div>
-								<div class="umb-property">
-									<div class="control-group umb-control-group no-border mb2">
-										<label class="control-label">
-											<span>Id</span>
-										</label>
-										<div class="controls">
-											{{ vm.ticket.ExternalTicketId }}
-										</div>
-									</div>
-								</div>
-							</umb-box-content>
-						</umb-box>
-					</div>
-				</div>
-			</umb-editor-container>
 			<umb-editor-footer>
 				<umb-editor-footer-content-right>
 					<umb-button type="button"
