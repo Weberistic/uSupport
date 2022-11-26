@@ -4,14 +4,15 @@
     $location,
     formHelper,
     $routeParams,
+    uSupportConfig,
     notificationsService,
     uSupportHelperServices,
+    uSupportHelperResources,
     uSupportTicketTypeResources) {
 
     'use strict';
 
     var vm = this;
-
     vm.loading = true;
     vm.create = $routeParams.create;
 
@@ -19,29 +20,15 @@
         icon: "icon-document"
     };
 
-    uSupportTicketTypeResources.getAllDataTypes().then(function (dataTypes) {
-        vm.dataTypes = dataTypes;
-        vm.properties = [
-            {
-                alias: "propertyName",
-                label: "Property name",
-                view: "textbox"
-            },
-            {
-                alias: "propertyDescription",
-                label: "Property description",
-                view: "textbox"
-            },
-            {
-                alias: "property",
-                label: "Property",
-                view: "dropdownFlexible",
-                config: {
-                    items: dataTypes
-                }
-            }
-        ];
-    });
+    vm.navigation = [{
+        name: "Ticket type",
+        alias: "ticketType",
+        icon: "icon-ticket",
+        view: uSupportConfig.basePathAppPlugins + "backoffice/ticketTypes/apps/ticketType/ticketType.html",
+        active: true
+    }];
+
+    vm.page.navigation = vm.navigation;
 
     if (!vm.create) {
         uSupportTicketTypeResources.getTicketType($routeParams.id).then(function (ticketType) {
@@ -57,25 +44,23 @@
                     menu: {
                         currentNode: currentNode,
                         currentSection: appState.getSectionState("currentSection")
-                    }
+                    },
+                    navigation: vm.navigation
                 };
 
-                if (ticketType.PropertyId !== 0) {
-                    uSupportTicketTypeResources.getDataTypeFromId(ticketType.PropertyId).then(function (type) {
-                        vm.properties[0].value = ticketType.PropertyName;
-                        vm.properties[1].value = ticketType.PropertyDescription;
-                        vm.properties[2].value = type.Name;
+                uSupportHelperResources.getAddons(vm.ticketType).then(function (apps) {
+                    if (apps.length > 0) {
+                        vm.navigation = vm.navigation.concat(apps)
+                    }
 
-                        vm.loading = false;
-                    });
-                } else {
                     vm.loading = false;
-                }
+                });
             });
         });
     } else {
         vm.loading = false;
     }
+
 
     vm.save = function () {
         vm.buttonState = "busy";

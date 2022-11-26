@@ -3,6 +3,7 @@ using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Mapping;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Core.Services;
+using Umbraco.Cms.Core.ContentApps;
 using Umbraco.Cms.Core.Models.Membership;
 using Umbraco.Cms.Core.Models.ContentEditing;
 using Umbraco.Cms.Web.BackOffice.Controllers;
@@ -12,8 +13,10 @@ using Umbraco.Web.WebApi;
 using Umbraco.Core.Models;
 using Umbraco.Core.Mapping;
 using Umbraco.Core.Services;
+using Umbraco.Web.ContentApps;
 using Umbraco.Core.Models.Membership;
 using Umbraco.Web.Models.ContentEditing;
+using Umbraco.Core.Models.ContentEditing;
 #endif
 using System;
 using System.Linq;
@@ -21,22 +24,23 @@ using uSupport.Dtos;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-
 namespace uSupport.Controllers
 {
 	public class uSupportHelperAuthorizedApiController : UmbracoAuthorizedApiController
 	{
 		private readonly IUserService _userService;
 #if NETCOREAPP
-		private readonly IUmbracoMapper _umbracoMapper;
+        private readonly IUmbracoMapper _umbracoMapper;
 #else
 		private readonly UmbracoMapper _umbracoMapper;
 #endif
 		private readonly IEntityService _entityService;
+        private readonly ContentAppFactoryCollection _contentAppDefinitions;
 
-		public uSupportHelperAuthorizedApiController(IUserService userService,
-			#if NETCOREAPP
-		IUmbracoMapper umbracoMapper,
+        public uSupportHelperAuthorizedApiController(IUserService userService,
+            ContentAppFactoryCollection contentAppDefinitions,
+#if NETCOREAPP
+        IUmbracoMapper umbracoMapper,
 #else
 		UmbracoMapper umbracoMapper,
 #endif
@@ -45,9 +49,13 @@ namespace uSupport.Controllers
 			_userService = userService;
 			_umbracoMapper = umbracoMapper;
 			_entityService = entityService;
+			_contentAppDefinitions = contentAppDefinitions;
 		}
 
-		[HttpGet]
+        [HttpPost]
+        public IEnumerable<ContentApp> GetAddons(object type) => _contentAppDefinitions.GetContentAppsFor(type);
+
+        [HttpGet]
 		public string GenerateExternalTicketId() => $"{GenerateRandomLetters(3)}-{GenerateRandomLetters(4)}-{GenerateRandomNumbers(3)}";
 
 		[HttpGet]

@@ -39,6 +39,15 @@
                     })
                 );
             },
+            getAddons: function (type) {
+                return umbRequestHelper.resourcePromise(
+                    $http({
+                        method: "POST",
+                        url: uSupportConfig.baseApiUrl + "uSupportHelperAuthorizedApi/GetAddons",
+                        data: type
+                    })
+                );
+            }
         };
     });
 })();

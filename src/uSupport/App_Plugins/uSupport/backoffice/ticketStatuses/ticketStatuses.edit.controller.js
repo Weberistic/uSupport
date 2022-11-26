@@ -7,21 +7,26 @@
     uSupportConfig,
     notificationsService,
     uSupportHelperServices,
+    uSupportHelperResources,
     uSupportTicketStatusResources) {
 
     'use strict';
 
     var vm = this;
-
-    vm.page = {};
     vm.loading = true;
     vm.create = $routeParams.create;
-    vm.properties = uSupportConfig.ticketStatusProperties;
 
-    vm.preview = {
-        property: vm.properties[0],
-        page: vm.page
-    }
+    vm.page = {};
+
+    vm.navigation = [{
+        name: "Ticket status",
+        alias: "ticketStatus",
+        icon: "icon-file-cabinet",
+        view: uSupportConfig.basePathAppPlugins + "backoffice/ticketStatuses/apps/ticketStatus/ticketStatus.html",
+        active: true
+    }];
+
+    vm.page.navigation = vm.navigation;
 
     if (!vm.create) {
         uSupportTicketStatusResources.getTicketStatus($routeParams.id).then(function (ticketStatus) {
@@ -34,26 +39,22 @@
                     menu: {
                         currentNode: currentNode,
                         currentSection: appState.getSectionState("currentSection")
-                    }
+                    },
+                    navigation: vm.navigation
                 };
 
-                vm.preview.page = vm.page;
-      
-                vm.properties.forEach(function (property) {
-                    property.value = vm.ticketStatus[property.alias];
-                });
+                uSupportHelperResources.getAddons(vm.ticketStatus).then(function (apps) {
+                    if (apps.length > 0) {
+                        vm.navigation = vm.navigation.concat(apps)
+                    }
 
-                vm.loading = false;
+                    vm.loading = false;
+                });
             });
         });
     } else {
         vm.loading = false;
     }
-
-    $scope.$watch("vm.preview", function (newValue, oldValue) {
-        vm.selectedColor = newValue.property.singleDropdownValue;
-        vm.selectedName = newValue.page.title;
-    }, true);
 
     vm.save = function () {
         vm.buttonState = "busy";
