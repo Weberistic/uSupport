@@ -45,7 +45,7 @@
 
                 uSupportHelperResources.getAddons(vm.ticketStatus).then(function (apps) {
                     if (apps.length > 0) {
-                        vm.navigation = vm.navigation.concat(apps)
+                        vm.page.navigation = vm.navigation.concat(apps)
                     }
 
                     vm.loading = false;
