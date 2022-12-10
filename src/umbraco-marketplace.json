@@ -1,0 +1,42 @@
+{
+    "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+    "AuthorDetails": {
+        "Name": "Lantzify",
+        "ImageUrl": "https://github.com/lantzify.png "
+    },
+    "Category": "Editor Tools",
+    "PackageType": "Package",
+    "LicenseTypes": [
+        "Free"
+    ],
+    "Title": "uSupport",
+    "Description": "A ticketing package for Umbraco",
+    "DiscussionForumUrl": "https://our.umbraco.com/packages/backoffice-extensions/usupport/usupport-support/",
+    "IssueTrackerUrl": "https://github.com/Weberistic/uSupport/issues",
+    "Screenshots": [
+        {
+            "ImageUrl": "https://raw.githubusercontent.com/Weberistic/uSupport/main/assets/dashboard.PNG",
+            "Caption": "Custom dashboard"
+        },
+        {
+            "ImageUrl": "https://raw.githubusercontent.com/Weberistic/uSupport/main/assets/ticketDetails.PNG",
+            "Caption": "Creating a new ticket"
+        },
+        {
+            "ImageUrl": "https://raw.githubusercontent.com/Weberistic/uSupport/main/assets/editTicket.PNG",
+            "Caption": "Managing ticket"
+        },
+        {
+            "ImageUrl": "https://raw.githubusercontent.com/Weberistic/uSupport/main/assets/ticketTypes.PNG",
+            "Caption": "Default ticket types"
+        },
+        {
+            "ImageUrl": "https://raw.githubusercontent.com/Weberistic/uSupport/main/assets/ticketStatus.PNG",
+            "Caption": "Default ticket statuses"
+        },
+        {
+            "ImageUrl": "https://raw.githubusercontent.com/Weberistic/uSupport/main/assets/settings.PNG",
+            "Caption": "Overview over the current settings"
+        }
+    ]
+}
