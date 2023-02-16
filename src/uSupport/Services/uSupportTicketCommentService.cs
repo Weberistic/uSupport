@@ -13,7 +13,7 @@ using Umbraco.Web.Models.ContentEditing;
 
 #if NET5_0
 using Umbraco.Cms.Core.Scoping;
-#elif NET6_0
+#elif NET6_0_OR_GREATER
 using Umbraco.Cms.Infrastructure.Scoping;
 #endif
 using NPoco;
