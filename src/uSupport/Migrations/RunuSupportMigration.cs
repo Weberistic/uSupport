@@ -1,6 +1,6 @@
 ﻿#if NETCOREAPP
 
-#if NET6_0
+#if NET6_0_OR_GREATER
 using Umbraco.Cms.Infrastructure.Scoping;
 #else
 using Umbraco.Cms.Core.Scoping;
