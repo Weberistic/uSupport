@@ -22,7 +22,7 @@ using System.Web.Routing;
 using Umbraco.Core.Logging;
 using static System.Configuration.ConfigurationManager;
 #endif
-#if NET6_0
+#if NET6_0_OR_GREATER
 using Umbraco.Cms.Core.Extensions;
 using Microsoft.Extensions.Hosting;
 #elif NET5_0
@@ -51,7 +51,7 @@ namespace uSupport.Services
 		private readonly ILogger _logger;
 #endif
 
-#if NET6_0
+#if NET6_0_OR_GREATER
         private readonly IHostEnvironment _hostingEnvironment;
 #elif NET5_0
 		private readonly IHostingEnvironment _hostingEnvironment;
@@ -62,7 +62,7 @@ namespace uSupport.Services
 	, ITempDataProvider tempDataProvider,
 	IRazorViewEngine razorViewEngine,
     ILogger<IuSupportTicketService> logger,
-#if NET6_0
+#if NET6_0_OR_GREATER
        IHostEnvironment hostingEnvironment,
 #elif NET5_0
 		IHostingEnvironment hostingEnvironment,

@@ -261,7 +261,21 @@ ModelManifest.xml
 **/App_Data/cache/
 **/Media/
 
-/src/uSupport.v[910].Web/[Bb]uild/
+/src/uSupport.v[11].Web/[Bb]uild/
+/src/uSupport.v11.Web/[Bb]uild/[Bb]elle/
+/src/uSupport.v11.Web/src/[Ll]ess/*.css
+/src/uSupport.v11.Web/wwwroot/[Mm]edia/
+/src/uSupport.v11.Web/App_Code/
+/src/uSupport.v11.Web/App_Plugins/
+/src/uSupport.v11.Web/[Uu]mbraco/[Dd]ata/
+/src/uSupport.v11.Web/[Uu]mbraco/[Ll]ogs/
+/src/uSupport.v11.Web/[Uu]mbraco/[Mm]odels/
+/src/uSupport.v11.Web/Views/
+/src/uSupport.v11.Web/appsettings.json
+/src/uSupport.v11.Web/appsettings.Development.json
+/src/uSupport.v11.Web/appsettings.Local.json
+
+/src/uSupport.v[10].Web/[Bb]uild/
 /src/uSupport.v10.Web/[Bb]uild/[Bb]elle/
 /src/uSupport.v10.Web/src/[Ll]ess/*.css
 /src/uSupport.v10.Web/wwwroot/[Mm]edia/
@@ -271,9 +285,6 @@ ModelManifest.xml
 /src/uSupport.v10.Web/[Uu]mbraco/[Ll]ogs/
 /src/uSupport.v10.Web/[Uu]mbraco/[Mm]odels/
 /src/uSupport.v10.Web/Views/
-!/src/uSupport.v10.Web/Views/Partials/blocklist/
-!/src/uSupport.v10.Web/Views/Partials/grid/
-!/src/uSupport.v10.Web/Views/_ViewImports.cshtml
 /src/uSupport.v10.Web/appsettings.json
 /src/uSupport.v10.Web/appsettings.Development.json
 /src/uSupport.v10.Web/appsettings.Local.json
@@ -288,9 +299,6 @@ ModelManifest.xml
 /src/uSupport.v9.Web/[Uu]mbraco/[Ll]ogs/
 /src/uSupport.v9.Web/[Uu]mbraco/[Mm]odels/
 /src/uSupport.v9.Web/Views/
-!/src/uSupport.v9.Web/Views/Partials/blocklist/
-!/src/uSupport.v9.Web/Views/Partials/grid/
-!/src/uSupport.v9.Web/Views/_ViewImports.cshtml
 /src/uSupport.v9.Web/appsettings.json
 /src/uSupport.v9.Web/appsettings.Development.json
 /src/uSupport.v9.Web/appsettings.Local.json

@@ -2,7 +2,7 @@
 using Umbraco.Cms.Core.Cache;
 #endif
 
-#if NET6_0
+#if NET6_0_OR_GREATER
 using Umbraco.Cms.Infrastructure.Scoping;
 #elif NET5_0
 using Umbraco.Cms.Core.Scoping;
@@ -125,7 +125,7 @@ namespace uSupport.Services
 					.Select("*")
 					.From(TicketTableAlias)
 					.GetFullTicket()
-					.Where($"{TicketTableAlias}.Id = {id.ConvertGuidToSqlString()}");
+					.Where($"[Id] = {id.ConvertGuidToSqlString()}");
 					
 				var ticket = scope.Database.Fetch<uSupportTicket>(sql).FirstOrDefault();
 
