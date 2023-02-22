@@ -75,7 +75,7 @@
             vm.ticketType.Icon = iconArr[0];
             vm.ticketType.Color = iconArr[1];
             vm.ticketType.PropertyName = vm.properties[0].value;
-            vm.ticketType.PropertyDescription = vm.properties[0].value;
+            vm.ticketType.PropertyDescription = vm.properties[1].value;
 
             if (vm.properties[2].singleDropdownValue !== '') {
                 uSupportTicketTypeResources.getDataTypeFromName(vm.properties[2].singleDropdownValue).then(function (dataType) {

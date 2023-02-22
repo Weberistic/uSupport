@@ -29,7 +29,7 @@
             }
         ];
 
-        if ($scope.model.ticketType) {
+        if ($scope.model.ticketType && $scope.model.ticketType.PropertyId) {
             uSupportTicketTypeResources.getDataTypeFromId($scope.model.ticketType.PropertyId).then(function (type) {
                 $scope.model.properties[0].value = $scope.model.ticketType.PropertyName;
                 $scope.model.properties[1].value = $scope.model.ticketType.PropertyDescription;
