@@ -12,37 +12,23 @@ namespace uSupport.Extensions
 		public static Sql GetFullTicket(this Sql sql)
 		{
 			return sql.InnerJoin(TicketTypeTableAlias)
-				.On($"[TypeId] = {TicketTypeTableAlias}.Id")
+				.On($"TypeId = UPPER({TicketTypeTableAlias}.Id)")
 				.InnerJoin(TicketStatusTableAlias)
-				.On($"[StatusId] = {TicketStatusTableAlias}.Id");
+				.On($"StatusId = UPPER({TicketStatusTableAlias}.Id)");
 		}
 
 		public static string ConvertStatusesToSql(this IEnumerable<uSupportTicketStatus> statuses)
 		{
 			if (statuses == null) return string.Empty;
 
-			string sql = string.Empty;
-
-			foreach (uSupportTicketStatus status in statuses)
-			{
-				sql += status.Id.ConvertGuidToSqlString();
-
-				if (status != statuses.LastOrDefault())
-					sql += ", ";
-			}
-
-			return sql;
+			return string.Join(", ", statuses.Select(x => string.Format("UPPER('{0}')", x.Id)));
 		}
 
 		public static string ConvertGuidToSqlString(this List<Guid> guids)
-        {
-			List<string> sql = new List<string>();
-            foreach (Guid guid in guids)
-				sql.Add(string.Format("CAST('{0}' as uniqueidentifier)", guid));
+		{
+			if (guids == null) return string.Empty;
 
-			return string.Join(",", sql);
-        }
-			
-		public static string ConvertGuidToSqlString(this Guid guid) => $"CAST('{guid}' as uniqueidentifier)";
+			return string.Join(", ", guids.Select(x => string.Format("UPPER('{0}')", x))); ;
+		}
 	}
 }

@@ -68,11 +68,11 @@ namespace uSupport.Services
 					.OrderBy("Submitted");
 
 				var sqlCount = new Sql()
-					.Select("Id")
+					.Select("COUNT(Id)")
 					.From(TicketTableAlias)
 					.Where($"StatusId IN ({statuses})");
 
-				var ticketCount = scope.Database.Fetch<uSupportTicket>(sqlCount).ToList().Count;
+				var ticketCount = scope.Database.Fetch<int>(sqlCount).FirstOrDefault();
 				var tickets = scope.Database.SkipTake<uSupportTicket>((page - 1) * PageSize, PageSize, sql);
 					
 				return MapPageToUSupportPage(tickets, ticketCount, page, PageSize);
@@ -125,12 +125,23 @@ namespace uSupport.Services
 					.Select("*")
 					.From(TicketTableAlias)
 					.GetFullTicket()
-					.Where($"[Id] = {id.ConvertGuidToSqlString()}");
+					.Where($"{TicketTableAlias}.Id = UPPER('{id}')");
 					
 				var ticket = scope.Database.Fetch<uSupportTicket>(sql).FirstOrDefault();
 
 				return ticket;
 			}
+		}
+
+		public override uSupportTicket Update(uSupportTicketSchema dto)
+		{
+			using (var scope = _scopeProvider.CreateScope())
+			{
+				scope.Database.Update(dto);
+				scope.Complete();
+			}
+
+			return base.Get(dto.Id);
 		}
 
 		public void ClearTicketCache()

@@ -37,10 +37,10 @@ namespace uSupport.Services
 {
 	public class uSupportSettingsService : IuSupportSettingsService
 	{
-		private readonly IEmailSender _emailSender;
 		private readonly uSupportSettingsTicket _defaultSettings;
 
 #if NETCOREAPP
+		private readonly IEmailSender _emailSender;
 		private readonly IRazorViewEngine _razorViewEngine;
 		private readonly IOptions<GlobalSettings> _globalSettings;
 		private readonly IHttpContextAccessor _httpContextAccessor;
@@ -48,6 +48,7 @@ namespace uSupport.Services
 		private readonly ITempDataProvider _tempDataProvider;
         private readonly ILogger<IuSupportTicketService> _logger;
 #else
+		private readonly EmailSender _emailSender;
 		private readonly ILogger _logger;
 #endif
 
@@ -56,10 +57,10 @@ namespace uSupport.Services
 #elif NET5_0
 		private readonly IHostingEnvironment _hostingEnvironment;
 #endif
-		public uSupportSettingsService(IEmailSender emailSender
-
+		public uSupportSettingsService(
 #if NETCOREAPP
-	, ITempDataProvider tempDataProvider,
+	IEmailSender emailSender,
+	ITempDataProvider tempDataProvider,
 	IRazorViewEngine razorViewEngine,
     ILogger<IuSupportTicketService> logger,
 #if NET6_0_OR_GREATER
@@ -71,10 +72,11 @@ namespace uSupport.Services
 	IOptions<GlobalSettings> globalSettings,
 	IOptions<uSupportSettings> uSupportSettings
 #else
-	, ILogger logger
+
+	ILogger logger
 #endif
             )
-        {			
+        {
 #if NETCOREAPP
 			_tempDataProvider = tempDataProvider;
 			_globalSettings = globalSettings;
@@ -82,9 +84,12 @@ namespace uSupport.Services
 			_hostingEnvironment = hostingEnvironment;
 			_httpContextAccessor = httpContextAccessor;
 			_razorViewEngine = razorViewEngine;
+			_emailSender = emailSender;
+#else
+			_emailSender = new EmailSender();
 #endif
 			_logger = logger;
-			_emailSender = emailSender;
+			
             _defaultSettings = new uSupportSettingsTicket();
 		}
 
@@ -222,7 +227,7 @@ namespace uSupport.Services
 
                 message.To.Add(toAddress);
 
-                _emailSender.SendAsync(message);
+                _emailSender.Send(message);
             }
 			catch (Exception ex)
 			{

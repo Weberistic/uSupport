@@ -86,7 +86,8 @@ namespace uSupport.Backoffice.Trees
 				foreach (uSupportTicketStatus ticketStatus in _uSupportTicketStatusService.GetAll())
 				{
 					var node = CreateTreeNode($"{ticketStatus.Id}", TicketStatusesTreeAlias, queryStrings, ticketStatus.Name, $"icon-file-cabinet", false, $"uSupport/{TicketStatusesTreeAlias}/edit/{ticketStatus.Id}");
-					node.AdditionalData.Add("overviewRoutePath", TicketStatusesTreeAlias);
+					node.AdditionalData.Add("overviewRoutePath", string.Format("/{0}/{1}/overview", uSupportConstants.SectionAlias, TicketStatusesTreeAlias));
+
 					nodes.Add(node);
 				}
 			}
@@ -153,7 +154,7 @@ namespace uSupport.Backoffice.Trees
 				foreach (uSupportTicketStatus ticketStatus in _uSupportTicketStatusService.GetAll())
 				{
 					var node = CreateTreeNode($"{ticketStatus.Id}", TicketStatusesTreeAlias, queryStrings, ticketStatus.Name, $"icon-file-cabinet", false, $"uSupport/{TicketStatusesTreeAlias}/edit/{ticketStatus.Id}");
-					node.AdditionalData.Add("overviewRoutePath", TicketStatusesTreeAlias);
+					node.AdditionalData.Add("overviewRoutePath", string.Format("/{0}/{1}/overview", uSupportConstants.SectionAlias, TicketStatusesTreeAlias));
 					nodes.Add(node);
 				}
 			}

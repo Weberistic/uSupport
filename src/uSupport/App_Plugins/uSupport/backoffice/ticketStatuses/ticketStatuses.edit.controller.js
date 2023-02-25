@@ -53,6 +53,7 @@
             });
         });
     } else {
+        vm.ticketStatus = {};
         vm.loading = false;
     }
 
@@ -61,20 +62,19 @@
 
         if (formHelper.submitForm({ scope: $scope })) {
 
-            vm.ticketStatus = {
-                Name: vm.page.title,
-                Alias: vm.page.alias
-            };
+            vm.ticketStatus.Name = vm.page.title;
+            vm.ticketStatus.Alias = vm.page.alias;
 
             vm.properties.forEach(function (property) {
                 if (property.alias === "Color") {
                     vm.ticketStatus[property.alias] = property.singleDropdownValue
                 } else {
-                    vm.ticketStatus[property.alias] = parseInt(property.value)
+                    vm.ticketStatus[property.alias] = parseInt(+property.value)
                 }
             });
 
             if (!vm.create) {
+              
                 uSupportTicketStatusResources.updateTicketStatus(vm.ticketStatus).then(function () {
                     vm.buttonState = "success";
                     $scope.formName.$dirty = false;

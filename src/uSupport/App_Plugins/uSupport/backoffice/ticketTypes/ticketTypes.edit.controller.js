@@ -58,6 +58,7 @@
             });
         });
     } else {
+        vm.ticketType = {};
         vm.loading = false;
     }
 
