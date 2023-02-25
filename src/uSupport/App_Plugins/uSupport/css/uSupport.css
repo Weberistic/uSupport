@@ -96,6 +96,9 @@
 	display: none;
 }
 
+.uSupport .umb-control-group .control-header .control-label {
+	white-space: initial;
+}
 /* COLS */
 .uSupport .uSupport-row {
 	display: flex;
