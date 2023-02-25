@@ -82,7 +82,7 @@ namespace uSupport.Backoffice.Trees
 				foreach (uSupportTicketType ticketType in _uSupportTicketTypeService.GetAll())
 				{
 					var node = CreateTreeNode($"{ticketType.Id}", TicketTypesTreeAlias, queryStrings, ticketType.Name, "icon-ticket", false, "uSupport/ticketTypes/edit/" + ticketType.Id);
-					node.AdditionalData.Add("overviewRoutePath", "/uSupport/ticketTypes/overview");
+					node.AdditionalData.Add("overviewRoutePath", string.Format("/{0}/{1}/overview", uSupportConstants.SectionAlias, TicketTypesTreeAlias));
 					nodes.Add(node);
 				}
 			}
@@ -115,10 +115,10 @@ namespace uSupport.Backoffice.Trees
         protected override TreeNode CreateRootNode(FormDataCollection queryStrings)
         {
             var root = base.CreateRootNode(queryStrings);
-            root.RoutePath = string.Format("/{0}/{1}/{2}", uSupportConstants.SectionAlias, TicketStatusesTreeAlias, "overview");
-            root.Icon = "icon-file-cabinet";
+            root.RoutePath = string.Format("/{0}/{1}/{2}", uSupportConstants.SectionAlias, TicketTypesTreeAlias, "overview");
+            root.Icon = "icon-ticket";
             root.HasChildren = false;
-            root.AdditionalData.Add("type", TicketStatusesTreeAlias);
+            root.AdditionalData.Add("type", TicketTypesTreeAlias);
 
             return root;
         }
@@ -149,7 +149,7 @@ namespace uSupport.Backoffice.Trees
                 foreach (uSupportTicketType ticketType in _uSupportTicketTypeService.GetAll())
                 {
                     var node = CreateTreeNode($"{ticketType.Id}", TicketTypesTreeAlias, queryStrings, ticketType.Name, "icon-ticket", false, "uSupport/ticketTypes/edit/" + ticketType.Id);
-                    node.AdditionalData.Add("overviewRoutePath", "/uSupport/ticketTypes/overview");
+					node.AdditionalData.Add("overviewRoutePath", string.Format("/{0}/{1}/overview", uSupportConstants.SectionAlias, TicketTypesTreeAlias));
                     nodes.Add(node);
                 }
             }
