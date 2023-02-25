@@ -62,7 +62,7 @@ namespace uSupport.Services
 				var sql = new Sql()
 					.Select("*")
 					.From(TicketCommentTableAlias)
-					.Where($"Id = {id.ConvertGuidToSqlString()}");
+					.Where($"Id = UPPER('{id}')");
 
 				return scope.Database.Fetch<uSupportTicketCommentSchema>(sql).FirstOrDefault()?.ConvertSchemaToDto();
 			}
@@ -76,7 +76,7 @@ namespace uSupport.Services
 				var sql = new Sql()
 					.Select("*")
 					.From(TicketCommentTableAlias)
-					.Where($"TicketId = {ticketId.ConvertGuidToSqlString()}")
+					.Where($"TicketId = UPPER('{ticketId}')")
 					.OrderBy("Date");
 
 				var comments = scope.Database.Query<uSupportTicketCommentSchema>(sql);

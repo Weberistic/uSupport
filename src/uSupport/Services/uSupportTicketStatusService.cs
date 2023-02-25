@@ -29,7 +29,7 @@ namespace uSupport.Services
 			using (var scope = _scopeProvider.CreateScope())
 			{
 				var db = scope.Database;
-				var status = db.Query<uSupportTicketStatus>($"SELECT * FROM {TicketStatusTableAlias} WHERE [Default] = 'True'").FirstOrDefault();
+				var status = db.Query<uSupportTicketStatus>($"SELECT * FROM {TicketStatusTableAlias} WHERE [Default] = '1'").FirstOrDefault();
 
 				return status;
 			}
@@ -40,7 +40,7 @@ namespace uSupport.Services
 			using (var scope = _scopeProvider.CreateScope())
 			{
 				var db = scope.Database;
-				var statuses = db.Query<uSupportTicketStatus>($"SELECT * FROM {TicketStatusTableAlias} WHERE [Active] = 'True'");
+				var statuses = db.Query<uSupportTicketStatus>($"SELECT * FROM {TicketStatusTableAlias} WHERE [Active] = '1'");
 
 				return statuses.ToList();
 			}
@@ -51,7 +51,7 @@ namespace uSupport.Services
 			using (var scope = _scopeProvider.CreateScope())
 			{
 				var db = scope.Database;
-				var statuses = db.Query<uSupportTicketStatus>($"SELECT * FROM {TicketStatusTableAlias} WHERE [Active] = 'False'");
+				var statuses = db.Query<uSupportTicketStatus>($"SELECT * FROM {TicketStatusTableAlias} WHERE [Active] = '0'");
 
 				return statuses.ToList();
 			}
@@ -84,7 +84,7 @@ namespace uSupport.Services
 			using (var scope = _scopeProvider.CreateScope())
 			{
 				var db = scope.Database;
-				return db.Query<uSupportTicketStatus>($"SELECT [Order] FROM {TicketStatusTableAlias}").ToList().Count;
+				return db.Query<int>($"SELECT COUNT([Order]) FROM {TicketStatusTableAlias}").FirstOrDefault();
 			}
 		}
 	}

@@ -49,7 +49,7 @@ namespace uSupport.Services.Interfaces
 				var sql = new Sql()
 					.Select("*")
 					.From(_tableAlias)
-					.Where($"Id = {id.ConvertGuidToSqlString()}");
+					.Where($"Id = UPPER('{id}')");
 
 				return scope.Database.Fetch<T>(sql).FirstOrDefault();
 			}
@@ -71,16 +71,17 @@ namespace uSupport.Services.Interfaces
 
 		public virtual T Update(Schema dto)
 		{
+			var dtoType = dto.GetType();
+			var dtoIdProperty = dtoType.GetProperty("Id");
+			var id = dtoIdProperty.GetValue(dto).ToString();
+
 			using (var scope = _scopeProvider.CreateScope())
 			{
-				scope.Database.Update(dto);
+				scope.Database.UpdateWhere(dto, $"Id = UPPER('{id}')");
 				scope.Complete();
 			}
 
-			var dtoType = dto.GetType();
-			var dtoIdProperty = dtoType.GetProperty("Id");
-
-			var updatedNotification = Get(Guid.Parse(dtoIdProperty.GetValue(dto).ToString()));
+			var updatedNotification = Get(Guid.Parse(id));
 
 			return updatedNotification;
 		}
@@ -89,7 +90,7 @@ namespace uSupport.Services.Interfaces
 		{
 			using (var scope = _scopeProvider.CreateScope())
 			{
-				var result = scope.Database.Delete<T>("WHERE [Id] = @id", new { id });
+				var result = scope.Database.Delete<T>($"WHERE Id = UPPER('{id}')");
 				scope.Complete();
 			}
 		}
