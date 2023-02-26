@@ -98,7 +98,7 @@ namespace uSupport.Backoffice.Trees
             var menu = _menuItemCollectionFactory.Create();
             if (id != Umbraco.Cms.Core.Constants.System.Root.ToInvariantString())
             {
-                menu.Items.Add<ActionDelete>(LocalizedTextService, true).LaunchDialogView("/App_Plugins/uSupport/components/actions/delete.html", "Delete");
+                menu.Items.Add<ActionDelete>(LocalizedTextService, true, true).LaunchDialogView("/App_Plugins/uSupport/components/actions/delete.html", "Delete");
             }
 
             return menu;
