@@ -19,14 +19,14 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net70'">
-		<PackageReference Include="Umbraco.Cms.Web.Website" Version="10.0.0" />
-		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="10.0.0" />
+		<PackageReference Include="Umbraco.Cms.Web.Website" Version="11.0.0" />
+		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="11.0.0" />
 	</ItemGroup>
 
 	<!-- nuget package stuff -->
 	<PropertyGroup>
 		<PackageId>uSupport</PackageId>
-		<Version>1.2.0</Version>
+		<Version>1.2.1</Version>
 		<Title>uSupport</Title>
 		<Authors>Lantzify</Authors>
 		<Owners>Lantzify</Owners>

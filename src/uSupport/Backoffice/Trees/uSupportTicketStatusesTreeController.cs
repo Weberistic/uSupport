@@ -101,12 +101,12 @@ namespace uSupport.Backoffice.Trees
 
 			if (id == Umbraco.Cms.Core.Constants.System.Root.ToInvariantString())
             {
-				menu.Items.Add<ActionNew>(LocalizedTextService, true).NavigateToRoute($"/uSupport/ticketStatuses/edit/-1?create");
-				menu.Items.Add<ActionSort>(LocalizedTextService, true).LaunchDialogView("/App_Plugins/uSupport/components/actions/sort.html", "Sort");
+				menu.Items.Add<ActionNew>(LocalizedTextService, true, false).NavigateToRoute($"/uSupport/ticketStatuses/edit/-1?create");
+				menu.Items.Add<ActionSort>(LocalizedTextService, true, true).LaunchDialogView("/App_Plugins/uSupport/components/actions/sort.html", "Sort");
 			}
             else
             {
-				menu.Items.Add<ActionDelete>(LocalizedTextService, true).LaunchDialogView("/App_Plugins/uSupport/components/actions/delete.html", "Delete");
+				menu.Items.Add<ActionDelete>(LocalizedTextService, true, true).LaunchDialogView("/App_Plugins/uSupport/components/actions/delete.html", "Delete");
 			}
 
 			return menu;

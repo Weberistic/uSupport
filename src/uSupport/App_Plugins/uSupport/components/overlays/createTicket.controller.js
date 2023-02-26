@@ -9,7 +9,6 @@
     vm.selectedTicketTypeName = "dummyValue";
 
     uSupportTicketTypeResources.getAllTicketTypes().then(function (ticketTypes) {
-        console.log(ticketTypes)
         vm.ticketTypes = ticketTypes;
         
     });

@@ -5,7 +5,6 @@
 
     uSupportHelperResources.getUserById($scope.model.userId).then(function (user) {
         vm.user = user;
-        console.log(user)
         vm.properties = [
             {
                 alias: "name",

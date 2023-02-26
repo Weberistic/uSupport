@@ -31,7 +31,7 @@
 
 	vm.order = function (columnName) {
 		if (vm.sortOrder.column === columnName) {
-			console.log(!vm.sortOrder.reverse)
+			!vm.sortOrder.reverse
 		} else {
 			vm.sortOrder.column = columnName;
 			vm.sortOrder.reverse = false;
