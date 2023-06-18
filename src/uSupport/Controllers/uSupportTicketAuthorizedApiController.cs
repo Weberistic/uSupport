@@ -3,6 +3,7 @@ using Umbraco.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Core.Services;
 using Microsoft.Extensions.Logging;
+using Umbraco.Cms.Core.Events;
 using Umbraco.Cms.Web.BackOffice.Controllers;
 using Umbraco.Cms.Core.Models.ContentEditing;
 using Umbraco.Cms.Core.Models.Membership;
@@ -27,6 +28,7 @@ using uSupport.Migrations.Schemas;
 using uSupport.Services.Interfaces;
 using static uSupport.Helpers.uSupportTypeHelper;
 using static uSupport.Constants.uSupportConstants;
+using uSupport.Notifications;
 
 namespace uSupport.Controllers
 {
@@ -36,6 +38,7 @@ namespace uSupport.Controllers
 		private readonly AppCaches _appCaches;
 #if NETCOREAPP
         private readonly IUmbracoMapper _umbracoMapper;
+        private readonly IEventAggregator _eventAggregator;
         private readonly ILogger<IuSupportTicketService> _logger;
 #else
 		private readonly ILogger _logger;
@@ -50,6 +53,7 @@ namespace uSupport.Controllers
 			AppCaches appCaches,
 #if NETCOREAPP
             IUmbracoMapper umbracoMapper,
+            IEventAggregator eventAggregator,
             ILogger<IuSupportTicketService> logger,
 #else
 			UmbracoMapper umbracoMapper,
@@ -60,7 +64,10 @@ namespace uSupport.Controllers
 			IuSupportSettingsService uSupportSettingsService,
 			IuSupportTicketCommentService uSupportTicketCommentService)
 		{
-            _logger = logger;
+#if NETCOREAPP
+			_eventAggregator= eventAggregator;
+#endif
+			_logger = logger;
 			_appCaches = appCaches;
 			_umbracoMapper = umbracoMapper;
             _userService = userService;
@@ -124,6 +131,8 @@ namespace uSupport.Controllers
 
 				_uSupportTicketService.ClearTicketCache();
 
+				_eventAggregator.Publish(new CreateTicketNotification(createdTicket));
+
 				return createdTicket;
 			}
 			catch (Exception ex)
@@ -165,6 +174,11 @@ namespace uSupport.Controllers
 				}
 
                 _uSupportTicketService.ClearTicketCache();
+
+				if (!updatedTicket.Status.Active)			
+                    _eventAggregator.Publish(new UpdateTicketResolvedNotification(updatedTicket));
+
+                _eventAggregator.Publish(new UpdateTicketNotification(updatedTicket));
 
                 return updatedTicket;
 			}
@@ -254,7 +268,10 @@ namespace uSupport.Controllers
 		[HttpGet]
 		public void DeleteTicket(Guid ticketId)
 		{
-			_uSupportTicketService.Delete(ticketId);
+#if NETCOREAPP
+            _eventAggregator.Publish(new DeleteTicketNotification(_uSupportTicketService.Get(ticketId)));
+#endif
+            _uSupportTicketService.Delete(ticketId);
             _uSupportTicketService.ClearTicketCache();
         }
 	}
