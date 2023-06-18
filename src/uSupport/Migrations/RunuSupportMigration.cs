@@ -1,16 +1,10 @@
 ﻿#if NETCOREAPP
-
-#if NET6_0_OR_GREATER
-using Umbraco.Cms.Infrastructure.Scoping;
-#else
-using Umbraco.Cms.Core.Scoping;
-#endif
 using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Events;
 using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Core.Migrations;
 using Umbraco.Cms.Core.Notifications;
-
+using Umbraco.Cms.Infrastructure.Scoping;
 using Umbraco.Cms.Infrastructure.Migrations.Upgrade;
 
 namespace uSupport.Migrations

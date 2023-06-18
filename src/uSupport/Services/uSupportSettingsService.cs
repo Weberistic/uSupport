@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Logging;
 using Umbraco.Cms.Core.Models.Email;
+using Umbraco.Cms.Core.Extensions;
+using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
@@ -21,12 +23,6 @@ using System.Net.Mail;
 using System.Web.Routing;
 using Umbraco.Core.Logging;
 using static System.Configuration.ConfigurationManager;
-#endif
-#if NET6_0_OR_GREATER
-using Umbraco.Cms.Core.Extensions;
-using Microsoft.Extensions.Hosting;
-#elif NET5_0
-using Umbraco.Cms.Core.Hosting;
 #endif
 using System;
 using System.IO;
@@ -46,16 +42,11 @@ namespace uSupport.Services
 		private readonly IHttpContextAccessor _httpContextAccessor;
 		private readonly IOptions<uSupportSettings> _uSupportSettings;
 		private readonly ITempDataProvider _tempDataProvider;
+        private readonly IHostEnvironment _hostingEnvironment;
         private readonly ILogger<IuSupportTicketService> _logger;
 #else
 		private readonly EmailSender _emailSender;
 		private readonly ILogger _logger;
-#endif
-
-#if NET6_0_OR_GREATER
-        private readonly IHostEnvironment _hostingEnvironment;
-#elif NET5_0
-		private readonly IHostingEnvironment _hostingEnvironment;
 #endif
 		public uSupportSettingsService(
 #if NETCOREAPP
@@ -63,12 +54,8 @@ namespace uSupport.Services
 	ITempDataProvider tempDataProvider,
 	IRazorViewEngine razorViewEngine,
     ILogger<IuSupportTicketService> logger,
-#if NET6_0_OR_GREATER
-       IHostEnvironment hostingEnvironment,
-#elif NET5_0
-		IHostingEnvironment hostingEnvironment,
-#endif
-	IHttpContextAccessor httpContextAccessor,
+	IHostEnvironment hostingEnvironment,
+    IHttpContextAccessor httpContextAccessor,
 	IOptions<GlobalSettings> globalSettings,
 	IOptions<uSupportSettings> uSupportSettings
 #else
