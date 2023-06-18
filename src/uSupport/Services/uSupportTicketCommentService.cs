@@ -1,6 +1,7 @@
 ﻿#if NETCOREAPP
 using Umbraco.Cms.Core.Mapping;
 using Umbraco.Cms.Core.Services;
+using Umbraco.Cms.Infrastructure.Scoping;
 using Umbraco.Cms.Core.Models.Membership;
 using Umbraco.Cms.Core.Models.ContentEditing;
 #else
@@ -9,12 +10,6 @@ using Umbraco.Core.Mapping;
 using Umbraco.Core.Services;
 using Umbraco.Core.Models.Membership;
 using Umbraco.Web.Models.ContentEditing;
-#endif
-
-#if NET5_0
-using Umbraco.Cms.Core.Scoping;
-#elif NET6_0_OR_GREATER
-using Umbraco.Cms.Infrastructure.Scoping;
 #endif
 using NPoco;
 using System;
