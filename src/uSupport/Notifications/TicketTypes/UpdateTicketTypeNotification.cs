@@ -6,10 +6,10 @@ namespace uSupport.Notifications
 {
     public class UpdateTicketTypeNotification : INotification
     {
-        public uSupportTicket Ticket { get; }
-        public UpdateTicketStatusNotification(uSupportTicket ticket)
+        public uSupportTicketType TicketType { get; }
+        public UpdateTicketTypeNotification(uSupportTicketType ticketType)
         {
-            Ticket = ticket;
+            TicketType = ticketType;
         }
     }
 }

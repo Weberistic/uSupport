@@ -123,11 +123,14 @@ namespace uSupport.Controllers
                 var author = _userService.GetUserById(ticket.AuthorId);
                 createdTicket.Author = _umbracoMapper.Map<IUser, UserDisplay>(author);
 
-				_uSupportSettingsService.SendEmail(
-					_uSupportSettingsService.GetTicketUpdateEmailSetting(),
-					_uSupportSettingsService.GetEmailSubjectNewTicket(),
-					_uSupportSettingsService.GetEmailTemplateNewTicketPath(),
-					createdTicket);
+				if (_uSupportSettingsService.GetSendEmailOnTicketCreatedSetting())
+				{
+                    _uSupportSettingsService.SendEmail(
+                        _uSupportSettingsService.GetTicketUpdateEmailSetting(),
+                        _uSupportSettingsService.GetEmailSubjectNewTicket(),
+                        _uSupportSettingsService.GetEmailTemplateNewTicketPath(),
+                        createdTicket);
+                }
 
 				_uSupportTicketService.ClearTicketCache();
 

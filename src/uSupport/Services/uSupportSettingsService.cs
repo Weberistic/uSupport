@@ -80,7 +80,17 @@ namespace uSupport.Services
             _defaultSettings = new uSupportSettingsTicket();
 		}
 
-		public string GetTicketUpdateEmailSetting()
+		public bool GetSendEmailOnTicketCreatedSetting()
+		{
+#if NETCOREAPP
+            return _uSupportSettings.Value.Tickets.SendEmailOnTicketCreated;
+#else
+			return bool.Parse(AppSettings["SendEmailOnTicketCreated"]);
+#endif
+        }
+
+
+        public string GetTicketUpdateEmailSetting()
 		{
 #if NETCOREAPP
 			return _uSupportSettings.Value.Tickets.TicketUpdateEmail;

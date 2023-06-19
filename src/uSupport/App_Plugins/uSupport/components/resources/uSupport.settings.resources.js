@@ -2,6 +2,11 @@
     'use strict';
     angular.module("umbraco.resources").factory("uSupportSettingsResources", function ($http, umbRequestHelper, uSupportConfig) {
         return {
+            getSendEmailOnTicketCreatedSetting: function () {
+                return umbRequestHelper.resourcePromise(
+                    $http.get(uSupportConfig.baseApiUrl + "uSupportSettingsAuthorizedApi/GetSendEmailOnTicketCreatedSetting")
+                );
+            },
             getTicketUpdateEmailSetting: function () {
                 return umbRequestHelper.resourcePromise(
                     $http.get(uSupportConfig.baseApiUrl + "uSupportSettingsAuthorizedApi/GetTicketUpdateEmailSetting")
