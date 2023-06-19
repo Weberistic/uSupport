@@ -20,6 +20,9 @@ namespace uSupport.Controllers
 		}
 
 		[HttpGet]
+		public bool GetSendEmailOnTicketCreatedSetting() => _uSupportSettingsService.GetSendEmailOnTicketCreatedSetting();
+
+        [HttpGet]
 		public string GetTicketUpdateEmailSetting() => _uSupportSettingsService.GetTicketUpdateEmailSetting();
 
 		[HttpGet]

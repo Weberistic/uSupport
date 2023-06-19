@@ -1,4 +1,6 @@
 ﻿#if NETCOREAPP
+using uSupport.Notifications;
+using Umbraco.Cms.Core.Events;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Core.Mapping;
 using Umbraco.Cms.Core.Services;
@@ -31,6 +33,7 @@ namespace uSupport.Controllers
 #if NETCOREAPP
         private readonly ILogger<IuSupportTicketCommentService> _logger;
         private readonly IUmbracoMapper _umbracoMapper;
+        private readonly IEventAggregator _eventAggregator;
 #else
 		private readonly ILogger _logger;
 		private readonly UmbracoMapper _umbracoMapper;
@@ -46,6 +49,7 @@ namespace uSupport.Controllers
 
             ILogger<IuSupportTicketCommentService> logger,
             IUmbracoMapper umbracoMapper,
+            IEventAggregator eventAggregator,
 #else
 			ILogger logger,
 			UmbracoMapper umbracoMapper,
@@ -55,6 +59,9 @@ namespace uSupport.Controllers
             IuSupportSettingsService uSupportSettingsService,
             IuSupportTicketCommentService uSupportTicketCommentService)
         {
+#if NETCOREAPP
+            _eventAggregator = eventAggregator;
+#endif
             _logger = logger;
             _userService = userService;
             _umbracoMapper = umbracoMapper;
@@ -73,7 +80,7 @@ namespace uSupport.Controllers
         {
             try
             {
-                _uSupportTicketCommentService.Create(ticketComment);
+                var comment = _uSupportTicketCommentService.Create(ticketComment);
 
                 var ticket = _uSupportTicketService.Get(ticketComment.TicketId);
                 var author = _userService.GetUserById(ticket.AuthorId);
@@ -84,6 +91,8 @@ namespace uSupport.Controllers
                     _uSupportSettingsService.GetEmailSubjectNewTicket(),
                     _uSupportSettingsService.GetEmailTemplateNewTicketPath(),
                     ticket);
+
+                _eventAggregator.Publish(new AddTicketCommentNotification(ticket, comment));
 
                 return _uSupportTicketCommentService.GetCommentsFromTicketId(ticketComment.TicketId).ToList();
             }

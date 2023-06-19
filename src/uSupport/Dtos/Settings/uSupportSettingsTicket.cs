@@ -5,6 +5,7 @@ namespace uSupport.Dtos.Settings
 	public class uSupportSettingsTicket
 	{
 		public const string Tickets = uSupportConstants.SectionAlias + ":Settings:Tickets";
+		public bool SendEmailOnTicketCreated { get; set; } = true;
 		public string TicketUpdateEmail { get; set; } = "None";
 		public string EmailSubjectNewTicket { get; set; } = "A new ticket has been created";
 		public string EmailSubjectUpdateTicket { get; set; } = "Your ticket has been updated";
