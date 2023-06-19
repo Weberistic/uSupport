@@ -1,4 +1,5 @@
 ﻿#if NETCOREAPP
+using uSupport.Notifications;
 using Umbraco.Cms.Core.Events;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Core.Mapping;
@@ -24,7 +25,6 @@ using uSupport.Dtos.Tables;
 using System.Collections.Generic;
 using uSupport.Migrations.Schemas;
 using uSupport.Services.Interfaces;
-using uSupport.Notifications;
 
 namespace uSupport.Controllers
 {

@@ -9,6 +9,7 @@ using Umbraco.Cms.Core.Models.ContentEditing;
 using Umbraco.Cms.Core.Models.Membership;
 using Umbraco.Cms.Core.Mapping;
 using Umbraco.Cms.Core.Cache;
+using uSupport.Notifications;
 #else
 using System.Net;
 using System.Web.Mvc;
@@ -28,7 +29,6 @@ using uSupport.Migrations.Schemas;
 using uSupport.Services.Interfaces;
 using static uSupport.Helpers.uSupportTypeHelper;
 using static uSupport.Constants.uSupportConstants;
-using uSupport.Notifications;
 
 namespace uSupport.Controllers
 {
@@ -65,7 +65,7 @@ namespace uSupport.Controllers
 			IuSupportTicketCommentService uSupportTicketCommentService)
 		{
 #if NETCOREAPP
-			_eventAggregator= eventAggregator;
+			_eventAggregator = eventAggregator;
 #endif
 			_logger = logger;
 			_appCaches = appCaches;

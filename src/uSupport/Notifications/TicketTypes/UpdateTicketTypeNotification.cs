@@ -4,10 +4,10 @@ using Umbraco.Cms.Core.Notifications;
 
 namespace uSupport.Notifications
 {
-    public class CreateTicketNotification : INotification
+    public class UpdateTicketTypeNotification : INotification
     {
         public uSupportTicket Ticket { get; }
-        public CreateTicketNotification(uSupportTicket ticket)
+        public UpdateTicketStatusNotification(uSupportTicket ticket)
         {
             Ticket = ticket;
         }

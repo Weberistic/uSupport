@@ -1,4 +1,6 @@
 ﻿#if NETCOREAPP
+using uSupport.Notifications;
+using Umbraco.Cms.Core.Events;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Umbraco.Cms.Web.BackOffice.Controllers;
@@ -18,75 +20,84 @@ using uSupport.Services.Interfaces;
 
 namespace uSupport.Controllers
 {
-	public class uSupportTicketStatusAuthorizedApiController : UmbracoAuthorizedApiController
-	{
+    public class uSupportTicketStatusAuthorizedApiController : UmbracoAuthorizedApiController
+    {
 #if NETCOREAPP
-		private readonly ILogger<IuSupportTicketStatusService> _logger;
+        private readonly ILogger<IuSupportTicketStatusService> _logger;
+        private readonly IEventAggregator _eventAggregator;
 #else
 		private readonly ILogger _logger;
 #endif
-		private readonly IuSupportTicketStatusService _uSupportTicketStatusService;
+        private readonly IuSupportTicketStatusService _uSupportTicketStatusService;
 
-		public uSupportTicketStatusAuthorizedApiController(
+        public uSupportTicketStatusAuthorizedApiController(
 #if NETCOREAPP
-			ILogger<IuSupportTicketStatusService> logger,
+            ILogger<IuSupportTicketStatusService> logger,
+            IEventAggregator eventAggregator,
 #else
 			ILogger logger,
 #endif
-			IuSupportTicketStatusService uSupportTicketStatusService)
-		{
-			_logger = logger;
-			_uSupportTicketStatusService = uSupportTicketStatusService;
-		}
-
-		[HttpGet]
-		public IEnumerable<uSupportTicketStatus> GetAllTicketStatuses() => _uSupportTicketStatusService.GetAll();
-
-		[HttpGet]
-		public uSupportTicketStatus GetTicketStatus(Guid id) => _uSupportTicketStatusService.Get(id);
-
-		[HttpPost]
-		public IEnumerable<uSupportTicketStatus> GetTicketStatuses(List<Guid> ids)
+            IuSupportTicketStatusService uSupportTicketStatusService)
         {
-			if (ids == null) return null;
-			
-			return _uSupportTicketStatusService.GetByIds(ids);
-		}
+            _logger = logger;
+#if NETCOREAPP
+            _eventAggregator = eventAggregator;
+#endif
+            _uSupportTicketStatusService = uSupportTicketStatusService;
+        }
 
-		[HttpGet]
-		public Guid GetStatusIdFromName(string statusName) => _uSupportTicketStatusService.GetStatusIdFromName(statusName);
+        [HttpGet]
+        public IEnumerable<uSupportTicketStatus> GetAllTicketStatuses() => _uSupportTicketStatusService.GetAll();
+
+        [HttpGet]
+        public uSupportTicketStatus GetTicketStatus(Guid id) => _uSupportTicketStatusService.Get(id);
+
+        [HttpPost]
+        public IEnumerable<uSupportTicketStatus> GetTicketStatuses(List<Guid> ids)
+        {
+            if (ids == null) return null;
+
+            return _uSupportTicketStatusService.GetByIds(ids);
+        }
+
+        [HttpGet]
+        public Guid GetStatusIdFromName(string statusName) => _uSupportTicketStatusService.GetStatusIdFromName(statusName);
 
 #if NETCOREAPP
-		[HttpPost]
-		public ActionResult<uSupportTicketStatus> CreateTicketStatus(uSupportTicketStatusSchema ticketStatus)
-		{
-            try 
-			{
-				ticketStatus.Order = _uSupportTicketStatusService.GetStatusCount() + 1;
-
-				return _uSupportTicketStatusService.Create(ticketStatus);
-			}
-            catch (Exception ex)
-            {
-				_logger.LogError(ex, "Failed to create ticket status.");
-				return ValidationProblem("Failed to create ticket status.");
-            }
-		}
-
-		[HttpPost]
-		public ActionResult<uSupportTicketStatus> UpdateTicketStatus(uSupportTicketStatus ticketStatus)
+        [HttpPost]
+        public ActionResult<uSupportTicketStatus> CreateTicketStatus(uSupportTicketStatusSchema ticketStatus)
         {
             try
             {
-				return _uSupportTicketStatusService.Update(ticketStatus.ConvertDtoToSchema());
-			}
+                ticketStatus.Order = _uSupportTicketStatusService.GetStatusCount() + 1;
+                var status = _uSupportTicketStatusService.Create(ticketStatus);
+                _eventAggregator.Publish(new CreateTicketStatusNotification(status));
+
+                return status;
+            }
             catch (Exception ex)
             {
-				_logger.LogError(ex, "Failed to update ticket status '{TicketStatusName}'", ticketStatus.Name);
-				return ValidationProblem("Failed to update ticket status.");
-			}
-			
-		}
+                _logger.LogError(ex, "Failed to create ticket status.");
+                return ValidationProblem("Failed to create ticket status.");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult<uSupportTicketStatus> UpdateTicketStatus(uSupportTicketStatus ticketStatus)
+        {
+            try
+            {
+                var status = _uSupportTicketStatusService.Update(ticketStatus.ConvertDtoToSchema());
+                _eventAggregator.Publish(new UpdateTicketStatusNotification(status));
+                return status;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to update ticket status '{TicketStatusName}'", ticketStatus.Name);
+                return ValidationProblem("Failed to update ticket status.");
+            }
+
+        }
 #else
         [HttpPost]
 		public HttpResponseMessage CreateTicketStatus(uSupportTicketStatusSchema ticketStatus)
@@ -123,7 +134,15 @@ namespace uSupport.Controllers
 		}
 #endif
 
-		[HttpGet]
-		public void DeleteTicket(Guid id) => _uSupportTicketStatusService.Delete(id);
-	}
+        [HttpGet]
+        public void DeleteTicket(Guid id)
+        {
+#if NETCOREAPP
+            var ticketStatus = _uSupportTicketStatusService.Get(id);
+            _eventAggregator.Publish(new DeleteTicketStatusNotification(ticketStatus));
+#endif
+            _uSupportTicketStatusService.Delete(id);
+        }
+            
+    }
 }

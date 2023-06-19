@@ -1,4 +1,6 @@
 ﻿#if NETCOREAPP
+using uSupport.Notifications;
+using Umbraco.Cms.Core.Events;
 using Umbraco.Cms.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Core.Services;
@@ -27,15 +29,17 @@ namespace uSupport.Controllers
 	{
 #if NETCOREAPP
 		private readonly ILogger<IuSupportTicketTypeService> _logger;
+        private readonly IEventAggregator _eventAggregator;
 #else
 		private readonly ILogger _logger;
 #endif
-		private readonly IDataTypeService _dataTypeService;
+        private readonly IDataTypeService _dataTypeService;
 		private readonly IuSupportTicketTypeService _uSupportTicketTypeService;
 		
 		public uSupportTicketTypeAuthorizedApiController(
 #if NETCOREAPP
 			ILogger<IuSupportTicketTypeService> logger,
+			IEventAggregator eventAggregator,
 #else
 			ILogger logger,
 #endif
@@ -43,7 +47,10 @@ namespace uSupport.Controllers
 			IuSupportTicketTypeService uSupportTicketTypeService
 			)
 		{
-			_logger = logger;
+#if NETCOREAPP
+            _eventAggregator = eventAggregator;
+#endif
+            _logger = logger;
 			_dataTypeService = dataTypeService;
 			_uSupportTicketTypeService = uSupportTicketTypeService;
 		}
@@ -111,8 +118,10 @@ namespace uSupport.Controllers
             try
             {
 				ticketType.Order = _uSupportTicketTypeService.GetTypesCount() + 1;
+				var type = _uSupportTicketTypeService.Create(ticketType);
+				_eventAggregator.Publish(new CreateTicketTypeNotification(type));
 
-				return _uSupportTicketTypeService.Create(ticketType);
+                return type;
 			}
             catch (Exception ex)
             {
@@ -126,7 +135,10 @@ namespace uSupport.Controllers
 		{
             try
             {
-				return _uSupportTicketTypeService.Update(ticketType.ConvertDtoToSchema());
+				var type = _uSupportTicketTypeService.Update(ticketType.ConvertDtoToSchema());
+				_eventAggregator.Publish(new UpdateTicketTypeNotification(type));
+
+                return type;
 			}
             catch (Exception ex)
             {
@@ -169,7 +181,14 @@ namespace uSupport.Controllers
 		}
 #endif
 
-        [HttpGet]
-		public void DeleteTicket(Guid id) => _uSupportTicketTypeService.Delete(id);
+		[HttpGet]
+		public void DeleteTicket(Guid id)
+		{
+#if NETCOREAPP
+            var ticketType = _uSupportTicketTypeService.Get(id);
+            _eventAggregator.Publish(new DeleteTicketTypeNotification(ticketType));
+#endif
+            _uSupportTicketTypeService.Delete(id);
+		}
 	}
 }
