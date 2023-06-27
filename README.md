@@ -10,7 +10,7 @@
 uSupport is an feature rich ticketing system designed specifically for the Umbraco. It is a complete ticketing solution that enables users to create, manage, and view tickets and their associated comments. With uSupport, you can quickly and easily create and manage tickets. uSupport is highly customizable, allowing users to set up their own ticket types and define ticket statuses.
 
 ## Why uSupport
-Instead of managing your clients Umbraco issues via email. Why not keep them in Umbraco. uSupport is highly flexable and customizable to make sure it fits your needs. No more rummaging through old emails to find the details of what needs to be fixed.
+Say goodbye to the days of digging through countless old emails in search of vital details. With uSupport, everything you need is neatly organized within the Umbraco environment. Streamline your workflow, boost productivity, and effortlessly access all the information you need to address and resolve client issues efficiently.
 
 ### Key features
 * Friendly UI
@@ -21,6 +21,9 @@ Instead of managing your clients Umbraco issues via email. Why not keep them in 
 
 ## Getting started with uSupport
 In order to view uSupports admin section. You will need to assign uSupport section to the desired user group. [You can read more here.](https://our.umbraco.com/Documentation/Fundamentals/Data/Users/#user-group-parameters) 
+
+## Useful links
+- [Documentation](https://weberistic.github.io/uSupport-documentation/)
 
 ## Contributing
 
