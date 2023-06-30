@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("uSupport.ticketType.contentApp.controller", function (
+angular.module("umbraco").controller("uSupport.ticketType.contentApp.controller", function (
     $scope,
     uSupportTicketTypeResources) {
 

@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("uSupport.ticketStatus.contentApp.controller", function ($scope) {
+angular.module("umbraco").controller("uSupport.ticketStatus.contentApp.controller", function ($scope) {
 
     'use strict';
 

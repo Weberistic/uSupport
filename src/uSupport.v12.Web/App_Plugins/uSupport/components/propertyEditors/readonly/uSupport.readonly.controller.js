@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("uSupport.readonly.controller", function ($scope, $location, overlayService, uSupportHelperResources) {
+angular.module("umbraco").controller("uSupport.readonly.controller", function ($scope, $location, overlayService, uSupportHelperResources) {
     'use strict';
 
     uSupportHelperResources.readOnlyValue($scope.model.value).then(function (entityValue) {

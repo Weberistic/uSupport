@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("uSupport.createTicket.controller", function (eventsService, $scope, userService, uSupportHelperResources, uSupportTicketTypeResources) {
+angular.module("umbraco").controller("uSupport.createTicket.controller", function (eventsService, $scope, userService, uSupportHelperResources, uSupportTicketTypeResources) {
 
     var vm = this;
 

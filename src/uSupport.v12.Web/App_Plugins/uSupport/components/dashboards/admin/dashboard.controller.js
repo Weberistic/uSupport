@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("uSupport.dashboard.admin.controller", function ($location, uSupportTicketResources, uSupportConfig) {
+angular.module("umbraco").controller("uSupport.dashboard.admin.controller", function ($location, uSupportTicketResources, uSupportConfig) {
 
     var vm = this;
 

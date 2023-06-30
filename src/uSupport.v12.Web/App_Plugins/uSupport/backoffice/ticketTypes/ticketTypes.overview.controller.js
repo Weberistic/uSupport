@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("uSupport.ticketType.overview.controller", function (appState, navigationService, $location, uSupportTicketTypeResources) {
+angular.module("umbraco").controller("uSupport.ticketType.overview.controller", function (appState, navigationService, $location, uSupportTicketTypeResources) {
 
     var vm = this;
 

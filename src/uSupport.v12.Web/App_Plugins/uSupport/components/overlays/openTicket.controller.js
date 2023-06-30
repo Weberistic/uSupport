@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("uSupport.openTicket.controller", function (
+angular.module("umbraco").controller("uSupport.openTicket.controller", function (
     $q,
     $scope,
     uSupportConfig,

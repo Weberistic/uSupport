@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("uSupport.ticket.contentApp.controller", function (
+angular.module("umbraco").controller("uSupport.ticket.contentApp.controller", function (
     $scope,
     uSupportConfig) {
 

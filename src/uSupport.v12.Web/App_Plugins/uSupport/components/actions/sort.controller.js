@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("uSupport.sort.controller", function ($filter, $route, $scope, navigationService, notificationsService, uSupportActionResources) {
+angular.module("umbraco").controller("uSupport.sort.controller", function ($filter, $route, $scope, navigationService, notificationsService, uSupportActionResources) {
 
 	var vm = this;
 	var dto = {};

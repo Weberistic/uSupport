@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("uSupport.dashboard.user.controller", function ($route,
+angular.module("umbraco").controller("uSupport.dashboard.user.controller", function ($route,
     editorService,
     userService,
     overlayService,

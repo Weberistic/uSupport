@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").component("usupportComments", {
+angular.module("umbraco").component("usupportComments", {
     templateUrl: "/App_Plugins/uSupport/components/tickets/uSupportcommentsComponent.html",
     controllerAs: "vm",
     bindings: {

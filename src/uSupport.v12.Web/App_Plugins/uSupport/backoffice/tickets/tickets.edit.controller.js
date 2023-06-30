@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("uSupport.tickets.edit.controller", function (
+angular.module("umbraco").controller("uSupport.tickets.edit.controller", function (
     $q,
     $scope,
     appState, 

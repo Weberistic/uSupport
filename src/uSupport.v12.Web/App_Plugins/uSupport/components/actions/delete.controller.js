@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("uSupport.delete.controller", function ($scope, navigationService, notificationsService, $location, uSupportActionResources) {
+angular.module("umbraco").controller("uSupport.delete.controller", function ($scope, navigationService, notificationsService, $location, uSupportActionResources) {
 
 	var vm = this;
 	var dto = {

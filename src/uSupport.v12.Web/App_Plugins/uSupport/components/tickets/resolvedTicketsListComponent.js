@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").component("resolvedTicketsList", {
+angular.module("umbraco").component("resolvedTicketsList", {
     templateUrl: "/App_Plugins/uSupport/components/tickets/resolvedTicketsListComponent.html",
     controllerAs: "vm",
     bindings: {

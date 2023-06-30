@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("uSupport.editUser.controller", function ($scope, notificationsService, uSupportHelperResources, umbRequestHelper, mediaHelper, Upload) {
+angular.module("umbraco").controller("uSupport.editUser.controller", function ($scope, notificationsService, uSupportHelperResources, umbRequestHelper, mediaHelper, Upload) {
 
     var vm = this;
     vm.loading = true;
