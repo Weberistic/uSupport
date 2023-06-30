@@ -8,6 +8,7 @@
     "sites": [
         "USupport.v8.Web/App_Plugins/",
         "USupport.v10.Web/App_Plugins/",
-        "USupport.v11.Web/App_Plugins/"
+        "USupport.v11.Web/App_Plugins/",
+        "USupport.v12.Web/App_Plugins/"
     ]
 }

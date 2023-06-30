@@ -1,0 +1,70 @@
+﻿@*
+===============================================
+ THIS FILE WILL GET REPLACED DURING AN UPDATE.
+ ANY CHANGES YOU MAKE TO IT WILL BE LOST.
+ 
+ If you need to edit this file. Copy and modify
+ the copied file. Then update the
+ 'GetEmailTemplateNewTicketPath' setting.
+ ================================================
+*@
+@using uSupport.Extensions
+@using uSupport.Dtos.Tables
+@inherits uSupportTemplate<uSupportTicket>
+@{
+	var baseUrl = GetBaseUrl(Context.Request);
+}
+
+<div style="font-family: sans-serif;">
+	<table style="background-color: #f2f3f4; width: 100%;">
+		<tr>
+			<td style="padding: 40px;">
+				<table style="background-color: #fff; width: 100%; max-width: 700px; margin: 0 auto;">
+					<tr>
+						<td style="padding: 40px;">
+							<h1 style="margin: 0 0 20px; font-size: 30px; line-height: 38px; text-align:center; color: #000;">
+								New ticket: "@Model.Title"
+							</h1>
+
+							<hr style="border: 0; height: 1px; background: #ebebe9; margin: 20px 0;" />
+
+							<table style="width: 100%;">
+								<tr style="text-align: center;">
+									<td style="width: 25%;">
+										<p style="font-weight: 600;">Id</p>
+										<p style="font-size: 15px;">@Model.ExternalTicketId</p>
+									</td>
+									<td style="width: 25%;">
+										<p style="font-weight: 600;">Type</p>
+										<p style="font-size: 15px;">@Model.Type.Name</p>
+									</td>
+									<td style="width: 25%;">
+										<p style="font-weight: 600;">Status</p>
+										<p style="font-size: 15px;">@Model.Status.Name</p>
+									</td>
+									<td style="width: 25%;">
+										<p style="font-weight: 600;">Date created</p>
+										<p style="font-size: 15px;">@Model.Submitted.ToString("yyyy-MM-dd")</p>
+									</td>
+									<td style="width: 25%;">
+										<p style="font-weight: 600;">Author</p>
+										<p style="font-size: 15px;">@(Model.Author?.Name)</p>
+									</td>
+								</tr>
+							</table>
+
+							<hr style="border: 0; height: 1px; background: #ebebe9; margin: 20px 0;" />
+
+							<h4 style="margin-bottom: 5px;">Summary</h4>
+							<p style="margin-top: 0; font-size: 15px; line-height: 28px;">@Model.Summary</p>
+
+							<hr style="border: 0; height: 1px; background: #ebebe9; margin: 20px 0;" />
+
+							<a href="@baseUrl/umbraco#/uSupport/tickets/edit/@Model.Id" target="_blank" style="display: inline-block; text-decoration: none; color: #fff; margin-top: 20px; border-radius: 32px; padding: 14px 44px; background-color: #016fd2;">Go to ticket</a>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</div>
