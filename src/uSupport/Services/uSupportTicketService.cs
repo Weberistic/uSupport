@@ -136,7 +136,7 @@ namespace uSupport.Services
 				scope.Complete();
 			}
 
-			return base.Get(dto.Id);
+			return Get(dto.Id);
 		}
 
 		public void ClearTicketCache()
