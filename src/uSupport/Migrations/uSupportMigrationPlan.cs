@@ -22,7 +22,8 @@ namespace uSupport.Migrations
 				.To<uSupportTicketTypeTable>("uSupport-ticket-type")
 				.To<uSupportTicketStatusTable>("uSupport-ticket-status")
 				.To<uSupportTicketTable>("uSupport-ticket")
-				.To<MakeExistingGuidIdsUpperCase>("uSupport-ticket-status-type-guid-update");
+				.To<MakeExistingGuidIdsUpperCase>("uSupport-ticket-status-type-guid-update")
+				.To<AddSectionForAdminsMigration>();
 		}
 	}
 }
