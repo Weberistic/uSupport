@@ -9,13 +9,13 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net60'">
-		<PackageReference Include="Umbraco.Cms.Web.Website" Version="10.0.0" />
-		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="10.0.0" />
+		<PackageReference Include="Umbraco.Cms.Web.Website" Version="10.6.1" />
+		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="10.6.1" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net70'">
-		<PackageReference Include="Umbraco.Cms.Web.Website" Version="11.0.0" />
-		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="11.0.0" />
+		<PackageReference Include="Umbraco.Cms.Web.Website" Version="11.4.2" />
+		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="11.4.2" />
 	</ItemGroup>
 
 	<!-- nuget package stuff -->
