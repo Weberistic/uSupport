@@ -32,7 +32,7 @@ namespace uSupport.Migrations.Schemas
 		public DateTime Date { get; set; } = DateTime.Now;
 
 		[Column("Comment")]
-		[SpecialDbType(SpecialDbTypes.NTEXT)]
+		[SpecialDbType(SpecialDbTypes.NVARCHARMAX)]
 		public string Comment { get; set; }
 	}
 }
