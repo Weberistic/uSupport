@@ -23,7 +23,7 @@ namespace uSupport.Migrations.Schemas
         public string Title { get; set; }
 
         [Column("Summary")]
-        [SpecialDbType(SpecialDbTypes.NTEXT)]
+        [SpecialDbType(SpecialDbTypes.NVARCHARMAX)]
         public string Summary { get; set; }
 
         [Column("TypeId")]

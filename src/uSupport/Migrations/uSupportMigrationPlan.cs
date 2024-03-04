@@ -5,6 +5,7 @@ using Umbraco.Core.Migrations;
 #endif
 using uSupport.Migrations.Create;
 using uSupport.Migrations.Updates._1._2._0;
+using uSupport.Migrations.Updates._2._0._0;
 
 namespace uSupport.Migrations
 {
@@ -23,7 +24,7 @@ namespace uSupport.Migrations
 				.To<uSupportTicketStatusTable>("uSupport-ticket-status")
 				.To<uSupportTicketTable>("uSupport-ticket")
 				.To<MakeExistingGuidIdsUpperCase>("uSupport-ticket-status-type-guid-update")
-				.To<AddSectionForAdminsMigration>();
+				.To<AddSectionForAdminsMigration>("uSupport-add-section-for-admin-update");
 		}
 	}
 }

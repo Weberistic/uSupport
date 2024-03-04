@@ -39,7 +39,15 @@
                     $scope.model.subtitle = vm.selectedTicketType.PropertyDescription;
                     vm.dataTypeConfiguration = dataType.Configuration;
 
+                    if (dataType.EditorAlias === "Umbraco.MediaPicker3") {
+                        dataType.Configuration.validationLimit = {
+                            max: dataType.Configuration.ValidationLimit.max,
+                            min: dataType.Configuration.ValidationLimit.min
+                        };
+                    }
+
                     $scope.model.property = {
+                        editor: dataType.EditorAlias,
                         alias: "property",
                         view: vm.selectedTicketType.PropertyView,
                         config: vm.dataTypeConfiguration,
@@ -113,7 +121,11 @@
                                 mandatory: true,
                                 pattern: ""
                             },
+                            allowRemoveMedia: false
                         });
+
+                        $scope.model.readonly = true;
+                        $scope.readonly = true;
 
                         $scope.model.ticket["propertyValue"] = JSON.stringify($scope.model.properties[3].value);
                     }

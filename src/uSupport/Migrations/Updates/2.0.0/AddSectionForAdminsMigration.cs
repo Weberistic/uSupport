@@ -23,10 +23,12 @@ namespace uSupport.Migrations.Updates._2._0._0
 		private readonly IUmbracoContextFactory _umbracoContext;
 
 		public AddSectionForAdminsMigration(IUserService userService,
+			IScopeProvider scopeProvider,
 			IUmbracoContextFactory umbracoContext,
 			IMigrationContext context) : base(context)
 		{
 			_userService = userService;
+			_scopeProvider = scopeProvider;
 			_umbracoContext = umbracoContext;
 		}
 

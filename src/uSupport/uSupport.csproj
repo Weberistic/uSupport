@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net472;net60;net70</TargetFrameworks>
+    <TargetFrameworks>net472;net60;net70;net80</TargetFrameworks>
   </PropertyGroup>
 	
 	<ItemGroup Condition="'$(TargetFramework)' == 'net472'">
@@ -18,10 +18,15 @@
 		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="11.4.2" />
 	</ItemGroup>
 
-	<!-- nuget package stuff -->
+	<ItemGroup Condition="'$(TargetFramework)' == 'net80'">
+		<PackageReference Include="Umbraco.Cms.Web.Website" Version="13.0.3" />
+		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="13.0.3" />
+	</ItemGroup>
+
+		<!-- nuget package stuff -->
 	<PropertyGroup>
 		<PackageId>uSupport</PackageId>
-		<Version>1.2.1</Version>
+		<Version>2.0.0</Version>
 		<Title>uSupport</Title>
 		<Authors>Lantzify</Authors>
 		<Owners>Lantzify</Owners>

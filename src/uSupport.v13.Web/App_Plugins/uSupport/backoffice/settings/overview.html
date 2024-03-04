@@ -1,0 +1,91 @@
+<div ng-controller="uSupport.settings.overview.controller as vm" class="uSupport settings">
+	<umb-editor-view>
+		<umb-editor-header name="vm.page.title"
+						   description="vm.page.description"
+						   hide-description="false"
+						   name-locked="true"
+						   description-locked="true"
+						   hide-alias="true"
+						   hide-icon="true">
+		</umb-editor-header>
+		<umb-editor-container>
+			<div class="uSupport-row">
+				<div class="uSupport-col-6">
+					<umb-box>
+						<umb-box-header title="Ticket settings"></umb-box-header>
+						<umb-box-content>
+							<div class="uSupport-row uSupport-no-gutters align-items-center mb3 settings-row">
+								<div class="uSupport-col-9">
+									Send email on ticket created<br />
+									<i>Email will be sent when new ticket is created</i>
+								</div>
+								<div class="uSupport-col-3 text-center">
+									<strong>{{vm.sendEmailOnTicketCreated}}</strong>
+								</div>
+							</div>
+							<div class="uSupport-row uSupport-no-gutters align-items-center mb3 settings-row">
+								<div class="uSupport-col-9">
+									Ticket updates email<br />
+									<i>Email that ticket updates will be sent to</i>
+								</div>
+								<div class="uSupport-col-3 text-center">
+									<strong>{{vm.ticketUpdateEmailSetting}}</strong>
+								</div>
+							</div>
+							<div class="uSupport-row uSupport-no-gutters align-items-center mb3 settings-row">
+								<div class="uSupport-col-8 mb3">
+									New ticket email subject<br />
+									<i>Subject of the email when a new ticket is created</i>
+								</div>
+								<div class="uSupport-col-12 text-right">
+									<strong>{{vm.emailSubjectNewTicket}}</strong>
+								</div>
+							</div>
+							<div class="uSupport-row uSupport-no-gutters align-items-center mb3 settings-row">
+								<div class="uSupport-col-12 mb3">
+									Update ticket email subject<br />
+									<i>Subject of the email when a new ticket is updated</i>
+								</div>
+								<div class="uSupport-col-12 text-right">
+									<strong>{{vm.emailSubjectUpdateTicket}}</strong>
+								</div>
+							</div>
+							<div class="uSupport-row uSupport-no-gutters align-items-center mb3 settings-row">
+								<div class="uSupport-col-12 mb3">
+									New ticket email template path<br />
+									<i>Path to template being sent when new ticket is created</i>
+								</div>
+								<div class="uSupport-col-12 text-right">
+									<strong>{{vm.emailTemplateNewTicketPath}}</strong>
+								</div>
+							</div>
+							<div class="uSupport-row uSupport-no-gutters align-items-center settings-row">
+								<div class="uSupport-col-12 mb3">
+									Update ticket email<br />
+									<i>Path to template being sent when ticket is updated</i>
+								</div>
+								<div class="uSupport-col-12 text-right">
+									<strong>{{vm.emailTemplateUpdateTicketPath}}</strong>
+								</div>
+							</div>
+						</umb-box-content>
+					</umb-box>
+				</div>
+				<div class="uSupport-col-6">
+					<umb-box>
+						<umb-box-header title="Application settings">Umbraco v10+</umb-box-header>
+						<umb-box-content>
+							<umb-code-snippet language="'json'">{{vm.appSettings}}</umb-code-snippet>
+						</umb-box-content>
+					</umb-box>
+					<umb-box>
+						<umb-box-header title="Web.config">Umbraco v8</umb-box-header>
+						<umb-box-content>
+							<umb-code-snippet language="'xml'">{{vm.web}}</umb-code-snippet>
+						</umb-box-content>
+					</umb-box>
+				</div>
+			</div>
+		</umb-editor-container>
+	</umb-editor-view>
+</div>
