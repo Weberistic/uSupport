@@ -19,9 +19,6 @@ Say goodbye to the days of digging through countless old emails in search of vit
 * Email notifications
 * Ticketing dashboard
 
-## Getting started with uSupport
-In order to view uSupports admin section. You will need to assign uSupport section to the desired user group. [You can read more here.](https://our.umbraco.com/Documentation/Fundamentals/Data/Users/#user-group-parameters) 
-
 ## Useful links
 - [Documentation](https://weberistic.github.io/uSupport-documentation/)
 
